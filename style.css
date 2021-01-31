@@ -1,0 +1,190 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+html{
+    /* height: 100%; */
+    font-size: 62.5%;
+    font-family: 'Times New Roman', Times, serif;
+}
+.navbar{
+    height: 10vh;
+    background-color: rgb(139, 223, 238);
+    text-align: center;
+
+
+}
+.navbar h1{
+text-transform: uppercase;
+color: rgb(133, 111, 111) ;
+font-family: 'Grenze', serif;
+font-size: 3rem;
+font-weight: 500;
+padding-top: 1rem;
+text-align: center;
+
+}
+h1:after{
+    content: '';
+    /* font-family: "Font Awesome 5 Free"; */
+    width: 10vw;
+    height: 15px;
+    display: block;
+    margin: -2px auto;
+    border-bottom: 5px solid black;
+   
+}
+.main_div{
+   width: 100vw;
+   height: 85vh;
+    background-image: url('images/back-2.jpg');
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+
+.main_container{
+    width: 35rem;
+    height: 55rem;
+    background-color: wheat;
+    border-radius: 2rem;
+    box-shadow: 0 1.2rem 3rem 0.5rem gray;
+    padding: 3rem;
+    text-align: center;
+}
+.main_container #title{
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    word-spacing: .5rem;
+    color: black;
+    margin: 2rem 0 0.5rem 0;
+    font-size: 2.5rem;
+    font-weight: 500;
+    text-shadow: 0 0.3rem 0.5rem gray;
+}
+.main_container #singer{
+    color: rgb(167, 162, 162);
+    text-transform: capitalize;
+    letter-spacing: .1rem;
+    font-size: 2rem;
+    margin-bottom: 4rem;
+    font-weight: 300;
+}
+.image_container{
+    width: 25rem;
+    height: 25rem;
+    margin: auto;
+}
+img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 1.2rem 3rem .5rem gray;
+}
+.music_controls{
+    width: 20rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    margin-top: .5rem;
+}
+.music_controls .fas{
+    color: black;
+    font-size: 2rem;
+    cursor: pointer;
+    filter: drop-shadow(0 1.2rem 3rem .5rem gray);
+}
+.music_controls .main_button{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background-color: black;
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+.anime {
+    animation: rotateplayer 3s linear infinite;
+}
+
+@keyframes rotateplayer{
+    from{
+          transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+.progressbar_container{
+    width: 100%;
+    height: auto;
+    padding: 1rem 0;
+    margin-top: 1rem;
+}
+.progress_div{
+    width: 100%;
+    height: 0.5rem;
+    box-shadow: 0 1px 2px black;
+    border-radius: 4rem;
+    position: relative;
+    margin-top: .5rem;
+    transition: all 1s linear;
+    -moz-transition: all 1s linear;
+    -webkit-transition: all 1s linear;
+    -o-transition: all 1s linear;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+
+}
+.progress{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: black;
+    border-radius: 4rem;
+    /* transition: width 1s linear;
+    -moz-transition: width 1s linear;
+    -webkit-transition: width 1s linear;
+    -o-transition: width 1s linear; */
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+
+
+}
+.progress_duration_meter{
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
+footer{
+    width: 100%;
+    height: 5vh;
+    background-color: rgb(139, 223, 238);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    color: rgb(133, 111, 111) ;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 500;
+}
+.footer_div p{
+    width: 100%;
+   display: inline;
+   justify-content: center;
+   align-items: center;   
+}

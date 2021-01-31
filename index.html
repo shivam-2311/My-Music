@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" 
+    integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <title>My Music Player</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Grenze&family=Grenze+Gotisch&display=swap" rel="stylesheet">    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1><i class="fas fa-music"></i>My Music Player<i class="fas fa-music"></i></h1>    
+        
+        </div>
+    </header>
+
+    <div class="main_div">
+        
+        <div class="main_container">
+            <h2 id="title">Moh Moh Ke Dhaage (Female)</h2>
+            <h3 id="singer">Monali Thakur</h3>
+            <div class="image_container">
+                <img src="images/shivam-1.png" alt="poster">
+            </div>
+            <audio src="music/Moh Moh Ke Dhaage (Female).mp3"></audio>
+            <div class="progressbar_container" id="progress-container">
+                <div class="progress_duration_meter">
+                    <div id="current_time">
+                       0.00
+                    </div>
+                    <div id="duration">5:22</div>
+                </div>
+                <div class="progress_div" id="progress_div">
+                    <div class="progress" id="progress">
+
+                    </div>
+                </div>
+            </div>
+            <div class="music_controls">
+                <i class="fas fa-backward" title="previous" id='prev'></i>
+                <i class="fas fa-play main_button" title="play" id="play"></i>
+                <i class="fas fa-forward" title="next" id="next"></i>
+            </div>
+        </div>
+    </div>
+    <footer>
+      
+        <div class="footer_div">
+            <p>All Rights are reserved</p>
+        <p class=''><a href='https://github.com/shivam-2311 ' target='_shiv'><i class="fab fa-github fa-1x"></i></a>
+            <a href='https://www.facebook.com/profile.php?id=100009282765633' target='_shiv'><i class="fab fa-facebook fa-1x"></i></a>
+            <a href='https://www.instagram.com/optimus_2311/' target='_shiv'> <i class="fab fa-instagram-square fa-1x "></i></a>
+
+</p>
+</div>
+       </footer> 
+          
+    <script>
+           const play = document.getElementById('play');
+           const music = document.querySelector('audio');
+           const img = document.querySelector('img');
+           const singer = document.getElementById('singer');
+           const title = document.getElementById('title');
+           const prev = document.getElementById('prev');
+           const next = document.getElementById('next');
+           let progress=document.getElementById('progress');
+           let current_time=document.getElementById('current_time');
+           let total_durration=document.getElementById('duration');
+           const progress_div = document.getElementById('progress_div');
+
+           const songs =[
+            {name : 'Moh Moh Ke Dhaage (Female)',
+                title: ' Moh Moh Ke Dhaage (Female) ',
+                singer: 'Monali Thakur',
+                img: 'shivam-1',
+            },
+            {name : 'Jab Koi Baat Bigad Jaye',
+                title: 'Jab Koi Baat Bigad Jaye',
+                singer: 'Kumar Sanu',
+                img: 'shivam-2',
+            },
+            {name : 'Jo Lakshya Hai Tera',
+                title: 'Jo Lakshya Hai Tera ',
+                singer: ' Shankar Mahadevan',
+                img: 'shivam-3',
+            },
+            {name : 'Pal-Pal-Dil-Ke-Paas',
+                title: 'Pal-Pal-Dil-Ke-Paas',
+                singer: ' Arijit Singh',
+                img: 'shivam-2',
+            },
+            {name : 'Tujhe Kitna Chahne Lage',
+                title: 'Tujhe Kitna Chahne Lage',
+                singer: 'Arijit Singh',
+                img: 'shivam-1',
+            },
+           ]
+
+
+          let isplaying = false;
+          const playMusic=()=>{
+               isplaying=true;
+               music.play();
+               play.classList.replace('fa-play', 'fa-pause');
+               img.classList.add('anime');
+           };
+          const pauseMusic= ()=>{
+               isplaying=false;
+               music.pause();
+               play.classList.replace( 'fa-pause','fa-play');
+               img.classList.remove('anime');
+           };
+          play.addEventListener('click',()=>{
+              isplaying?pauseMusic():playMusic();
+          });
+        
+          const loadSongs=(songs)=>{
+              title.textContent=songs.title;
+              singer.textContent=songs.singer;
+              music.src='music/'+ songs.name + '.mp3';
+              img.src = 'images/'+songs.img+'.png';
+          }
+
+         
+          songIndex =0;
+          const nextSong =()=>{
+            songIndex= (songIndex+1) % songs.length;
+            loadSongs(songs[songIndex]);
+            playMusic();
+          }
+          const prevSong =()=>{
+            songIndex= (songIndex-1+ songs.length)%songs.length;
+            loadSongs(songs[songIndex]);
+            playMusic();
+          }
+
+          music.addEventListener('timeupdate',(event)=>{
+              
+            const {currentTime, duration}= event.srcElement;
+            let progress_time= (currentTime/duration)*100;
+            progress.style.width=`${progress_time}%`;
+
+            let min_duration = Math.floor(duration/60);
+            let sec_duration = Math.floor(duration% 60);
+            let tot_durration =`${min_duration}:${sec_duration}`;
+            if(duration){
+                total_durration.textContent=`${tot_durration}`;
+            }
+            let min_currentTime = Math.floor(currentTime/60);
+            let sec_currentTime = Math.floor(currentTime% 60);
+            let tot_currentTime =`${min_currentTime}:${sec_currentTime}`;
+            if(currentTime){
+                current_time.textContent=`${tot_currentTime}`;
+            }
+
+          });
+          progress_div.addEventListener('click',(event)=>{
+        
+              const {duration}= music;
+              let move_progress=(event.offsetX/event.srcElement.clientWidth)*duration;
+              music.currentTime=move_progress;
+          })
+
+
+        music.addEventListener('ended',nextSong);
+        next.addEventListener('click', nextSong);
+        prev.addEventListener('click', prevSong);
+          
+
+    </script>
+</body>
+</html>
